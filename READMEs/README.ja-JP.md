@@ -271,6 +271,20 @@ git add .gitattributes .understand-anything/
 
 ---
 
+## 🎥 コミュニティ
+
+**Better Stack** によるコミュニティ製ウォークスルー動画。
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=VmIUXVlt7_I"><img src="https://img.youtube.com/vi/VmIUXVlt7_I/maxresdefault.jpg" alt="Better Stack によるコミュニティ製ウォークスルー動画 — クリックして YouTube で視聴" width="480" /></a>
+  <br />
+  <em><a href="https://www.youtube.com/watch?v=VmIUXVlt7_I">YouTube で視聴 &rarr;</a></em>
+</p>
+
+動画、ブログ、チュートリアルを作成しましたか?Issue または PR を開いてください — ここで紹介させていただきます。
+
+---
+
 ## 🤝 コントリビュート
 
 コントリビュートを歓迎します！始め方は以下の通りです：

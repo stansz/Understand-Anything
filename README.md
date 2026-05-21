@@ -272,6 +272,20 @@ File analyzers run in parallel (up to 5 concurrent, 20-30 files per batch). Supp
 
 ---
 
+## 🎥 Community
+
+A community-made walkthrough by **Better Stack**.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=VmIUXVlt7_I"><img src="https://img.youtube.com/vi/VmIUXVlt7_I/maxresdefault.jpg" alt="Community walkthrough by Better Stack — watch on YouTube" width="480" /></a>
+  <br />
+  <em><a href="https://www.youtube.com/watch?v=VmIUXVlt7_I">Watch on YouTube &rarr;</a></em>
+</p>
+
+Made a video, blog post, or tutorial? Open an issue or PR — happy to feature it here.
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome! Here's how to get started:

@@ -270,6 +270,20 @@ git add .gitattributes .understand-anything/
 
 ---
 
+## 🎥 커뮤니티
+
+**Better Stack**에서 만든 커뮤니티 워크스루 영상.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=VmIUXVlt7_I"><img src="https://img.youtube.com/vi/VmIUXVlt7_I/maxresdefault.jpg" alt="Better Stack에서 만든 커뮤니티 워크스루 영상 — 클릭하여 YouTube에서 시청" width="480" /></a>
+  <br />
+  <em><a href="https://www.youtube.com/watch?v=VmIUXVlt7_I">YouTube에서 보기 &rarr;</a></em>
+</p>
+
+영상, 블로그 글, 튜토리얼을 만드셨나요? 이슈나 PR을 열어주세요 — 여기서 소개해드릴게요.
+
+---
+
 ## 🤝 기여하기
 
 기여를 환영합니다! 시작하는 방법은 다음과 같습니다:

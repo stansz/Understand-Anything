@@ -270,6 +270,20 @@ git add .gitattributes .understand-anything/
 
 ---
 
+## 🎥 社群
+
+由 **Better Stack** 製作的社群影片導覽。
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=VmIUXVlt7_I"><img src="https://img.youtube.com/vi/VmIUXVlt7_I/maxresdefault.jpg" alt="Better Stack 製作的社群影片導覽 —— 點擊在 YouTube 觀看" width="480" /></a>
+  <br />
+  <em><a href="https://www.youtube.com/watch?v=VmIUXVlt7_I">在 YouTube 上觀看 &rarr;</a></em>
+</p>
+
+寫過影片、部落格或教學?開一個 issue 或 PR —— 我們很樂意將它放在這裡。
+
+---
+
 ## 🤝 貢獻
 
 歡迎貢獻！以下是貢獻指南：

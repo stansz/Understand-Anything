@@ -271,6 +271,20 @@ git add .gitattributes .understand-anything/
 
 ---
 
+## 🎥 Сообщество
+
+Обзорное видео от сообщества, созданное **Better Stack**.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=VmIUXVlt7_I"><img src="https://img.youtube.com/vi/VmIUXVlt7_I/maxresdefault.jpg" alt="Обзорное видео от сообщества Better Stack — нажмите, чтобы посмотреть на YouTube" width="480" /></a>
+  <br />
+  <em><a href="https://www.youtube.com/watch?v=VmIUXVlt7_I">Смотреть на YouTube &rarr;</a></em>
+</p>
+
+Сделали видео, статью или руководство? Откройте issue или PR — с удовольствием добавим сюда.
+
+---
+
 ## 🤝 Вклад в проект
 
 Будем рады вашим контрибьюшенам! Как начать:

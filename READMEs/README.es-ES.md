@@ -270,6 +270,20 @@ Los analizadores de archivos se ejecutan en paralelo (hasta 5 concurrentes, 20-3
 
 ---
 
+## 🎥 Comunidad
+
+Un recorrido en video hecho por la comunidad de **Better Stack**.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=VmIUXVlt7_I"><img src="https://img.youtube.com/vi/VmIUXVlt7_I/maxresdefault.jpg" alt="Recorrido en video por la comunidad de Better Stack — haz clic para ver en YouTube" width="480" /></a>
+  <br />
+  <em><a href="https://www.youtube.com/watch?v=VmIUXVlt7_I">Ver en YouTube &rarr;</a></em>
+</p>
+
+¿Has hecho un video, post o tutorial? Abre un issue o PR — estaremos encantados de mostrarlo aquí.
+
+---
+
 ## 🤝 Contribuir
 
 ¡Las contribuciones son bienvenidas! Así puedes empezar:

@@ -271,6 +271,20 @@ Dosya analizörleri paralel çalışır (en fazla 3 eşzamanlı). Artımlı gün
 
 ---
 
+## 🎥 Topluluk
+
+**Better Stack** tarafından hazırlanan topluluk tanıtım videosu.
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=VmIUXVlt7_I"><img src="https://img.youtube.com/vi/VmIUXVlt7_I/maxresdefault.jpg" alt="Better Stack tarafından hazırlanan topluluk tanıtım videosu — YouTube'da izlemek için tıklayın" width="480" /></a>
+  <br />
+  <em><a href="https://www.youtube.com/watch?v=VmIUXVlt7_I">YouTube'da izle &rarr;</a></em>
+</p>
+
+Bir video, blog yazısı veya eğitim hazırladınız mı? Issue veya PR açın — burada yer vermekten mutluluk duyarız.
+
+---
+
 ## 🤝 Katkıda Bulunma
 
 Katkılar memnuniyetle karşılanır! Başlamak için:
