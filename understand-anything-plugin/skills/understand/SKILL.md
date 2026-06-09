@@ -124,6 +124,10 @@ Determine whether to run a full analysis or incremental update.
    if [ ! -f "$PLUGIN_ROOT/packages/core/dist/index.js" ]; then
      cd "$PLUGIN_ROOT" && (pnpm install --frozen-lockfile 2>/dev/null || pnpm install) && pnpm --filter @understand-anything/core build
    fi
+
+   if [ ! -f "$PLUGIN_ROOT/packages/dashboard/dist/index.html" ]; then
+     cd "$PLUGIN_ROOT" && VITE_DEMO_MODE=true pnpm --filter @understand-anything/dashboard build
+   fi
    ```
 
    If `pnpm` is missing, report to the user: "Install Node.js ≥ 22 and pnpm ≥ 10, then re-run `/understand`."
