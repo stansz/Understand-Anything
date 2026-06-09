@@ -244,6 +244,24 @@ Set up and verify the `.understandignore` file before scanning.
 
 ---
 
+## Phase 0.6 — Gitignore Protection
+
+Prevent analysis artifacts from being accidentally committed to the project repository.
+
+1. Check if `.understand-anything/` is already in `$PROJECT_ROOT/.gitignore`:
+   ```bash
+   grep -q "^\.understand-anything/" "$PROJECT_ROOT/.gitignore" 2>/dev/null && echo "already-gitignored" || echo "needs-gitignore"
+   ```
+2. **If not gitignored**, append it:
+   ```bash
+   echo ".understand-anything/" >> "$PROJECT_ROOT/.gitignore"
+   ```
+   Report to the user: `Added .understand-anything/ to .gitignore (prevents analysis artifacts from being committed)`.
+3. **If already gitignored**, skip silently — nothing to do.
+4. No confirmation needed — proceed directly to Phase 1.
+
+---
+
 ## Phase 1 — SCAN (Full analysis only)
 
 Report to the user: `[Phase 1/7] Scanning project files...`
