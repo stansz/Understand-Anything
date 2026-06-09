@@ -81,16 +81,21 @@ Determine whether to run a full analysis or incremental update.
    SELF_RELATIVE=$([ -n "$SKILL_REAL" ] && cd "$SKILL_REAL/../.." 2>/dev/null && pwd || echo "")
    COPILOT_SKILL_REAL=$(realpath ~/.copilot/skills/understand 2>/dev/null || readlink -f ~/.copilot/skills/understand 2>/dev/null || echo "")
    COPILOT_SELF_RELATIVE=$([ -n "$COPILOT_SKILL_REAL" ] && cd "$COPILOT_SKILL_REAL/../.." 2>/dev/null && pwd || echo "")
+   HERMES_SKILL_REAL=$(realpath ~/.hermes/skills/understand 2>/dev/null || readlink -f ~/.hermes/skills/understand 2>/dev/null || echo "")
+   HERMES_SELF_RELATIVE=$([ -n "$HERMES_SKILL_REAL" ] && cd "$HERMES_SKILL_REAL/../.." 2>/dev/null && pwd || echo "")
 
    PLUGIN_ROOT=""
    for candidate in \
      "${CLAUDE_PLUGIN_ROOT}" \
+     "${HERMES_PLUGIN_ROOT}" \
      "$HOME/.understand-anything-plugin" \
      "$SELF_RELATIVE" \
      "$COPILOT_SELF_RELATIVE" \
+     "$HERMES_SELF_RELATIVE" \
      "$HOME/.codex/understand-anything/understand-anything-plugin" \
      "$HOME/.opencode/understand-anything/understand-anything-plugin" \
      "$HOME/.pi/understand-anything/understand-anything-plugin" \
+     "$HOME/.hermes/understand-anything/understand-anything-plugin" \
      "$HOME/understand-anything/understand-anything-plugin"; do
      if [ -n "$candidate" ] && [ -f "$candidate/package.json" ] && [ -f "$candidate/pnpm-workspace.yaml" ]; then
        PLUGIN_ROOT="$candidate"
@@ -102,12 +107,15 @@ Determine whether to run a full analysis or incremental update.
      echo "Error: Cannot find the understand-anything plugin root."
      echo "Checked:"
      echo "  - ${CLAUDE_PLUGIN_ROOT:-<unset CLAUDE_PLUGIN_ROOT>}"
+     echo "  - ${HERMES_PLUGIN_ROOT:-<unset HERMES_PLUGIN_ROOT>}"
      echo "  - $HOME/.understand-anything-plugin"
      echo "  - ${SELF_RELATIVE:-<unresolved path derived from ~/.agents/skills/understand>}"
      echo "  - ${COPILOT_SELF_RELATIVE:-<unresolved path derived from ~/.copilot/skills/understand>}"
+     echo "  - ${HERMES_SELF_RELATIVE:-<unresolved path derived from ~/.hermes/skills/understand>}"
      echo "  - $HOME/.codex/understand-anything/understand-anything-plugin"
      echo "  - $HOME/.opencode/understand-anything/understand-anything-plugin"
      echo "  - $HOME/.pi/understand-anything/understand-anything-plugin"
+     echo "  - $HOME/.hermes/understand-anything/understand-anything-plugin"
      echo "  - $HOME/understand-anything/understand-anything-plugin"
      echo "Make sure the plugin is installed correctly."
      exit 1

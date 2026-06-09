@@ -3,7 +3,7 @@
 <p align="center">
   <strong>Turn any codebase, knowledge base, or docs into an interactive knowledge graph you can explore, search, and ask questions about.</strong>
   <br />
-  <em>Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.</em>
+  <em>Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, Hermes, and more.</em>
 </p>
 
 <p align="center">
