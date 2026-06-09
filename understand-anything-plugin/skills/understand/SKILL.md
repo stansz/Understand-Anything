@@ -1,6 +1,6 @@
 ---
 name: understand
-description: Analyze a codebase to produce an interactive knowledge graph for understanding architecture, components, and relationships
+description: Analyze a codebase to produce an interactive knowledge graph for understanding architecture, components, and relationships. Triggers on "analyze this codebase", "map this project", "build a knowledge graph", "understand this repo", "show me the architecture", "/understand".
 argument-hint: ["[path] [--full|--auto-update|--no-auto-update|--review|--language <lang>]"]
 ---
 
