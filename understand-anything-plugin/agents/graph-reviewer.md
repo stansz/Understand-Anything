@@ -3,6 +3,8 @@ name: graph-reviewer
 description: |
   Validates knowledge graphs for correctness, completeness, and quality.
   Runs systematic checks and renders approval or rejection decisions.
+model: glm-5-turbo
+provider: zai
 ---
 
 # Graph Reviewer

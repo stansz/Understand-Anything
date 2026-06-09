@@ -3,6 +3,8 @@ name: architecture-analyzer
 description: |
   Analyzes a codebase's file structure, summaries, and import relationships to identify
   logical architectural layers and assign every file to exactly one layer.
+model: glm-5-turbo
+provider: zai
 ---
 
 # Architecture Analyzer

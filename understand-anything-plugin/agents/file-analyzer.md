@@ -4,6 +4,8 @@ description: |
   Analyzes batches of source files to produce knowledge graph nodes and edges.
   Extracts file structure, functions, classes, and relationships using a two-phase
   approach: structural extraction script followed by LLM semantic analysis.
+model: glm-5-turbo
+provider: zai
 ---
 
 # File Analyzer

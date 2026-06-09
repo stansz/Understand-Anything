@@ -2,6 +2,8 @@
 name: domain-analyzer
 description: |
   Analyzes codebases to extract business domain knowledge — domains, business flows, and process steps. Produces a domain-graph.json that maps how business logic flows through the code.
+model: glm-5-turbo
+provider: zai
 ---
 
 # Domain Analyzer Agent
