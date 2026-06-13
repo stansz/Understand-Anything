@@ -176,6 +176,12 @@ Determine whether to run a full analysis or incremental update.
    ```
    The script discovers subdomain graphs, loads the existing `knowledge-graph.json` as a base (if present), and merges everything into `knowledge-graph.json` (deduplicating nodes and edges). Report the merge summary to the user, then continue with the merged graph.
 
+   **Bridge to Phase 2:** `merge-batch-graphs.py` in Phase 2 only reads `batch-*.json` from `intermediate/` — it does NOT read `knowledge-graph.json`. Copy the merged graph into the intermediate directory so the subdomain nodes survive through to `assembled-graph.json` and the final output:
+   ```bash
+   cp "$PROJECT_ROOT/.understand-anything/knowledge-graph.json" \
+      "$PROJECT_ROOT/.understand-anything/intermediate/batch-0.json"
+   ```
+
 5. Check if `$PROJECT_ROOT/.understand-anything/knowledge-graph.json` exists. If it does, read it.
 6. Check if `$PROJECT_ROOT/.understand-anything/meta.json` exists. If it does, read it to get `gitCommitHash`.
 7. **Decision logic:**
