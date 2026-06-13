@@ -1,7 +1,7 @@
 ---
 name: understand
 description: Analyze a codebase to produce an interactive knowledge graph for understanding architecture, components, and relationships. Triggers on "analyze this codebase", "map this project", "build a knowledge graph", "understand this repo", "show me the architecture", "/understand".
-argument-hint: ["[path] [--full|--auto-update|--no-auto-update|--review|--language <lang>]"]
+argument-hint: ["[path] [--full|--auto-update|--no-auto-update|--review|--deploy|--language <lang>]"]
 ---
 
 # /understand
@@ -15,6 +15,7 @@ Analyze the current codebase and produce a `knowledge-graph.json` file in `.unde
   - `--auto-update` — Enable automatic graph updates on commit (writes `autoUpdate: true` to `.understand-anything/config.json`)
   - `--no-auto-update` — Disable automatic graph updates (writes `autoUpdate: false` to `.understand-anything/config.json`)
   - `--review` — Run full LLM graph-reviewer instead of inline deterministic validation
+  - `--deploy` — Build a static dashboard with source code bundled, create a GitHub repo (`<project>-graph`), push, and provide the CF Pages-ready URL. Skips local dev server launch.
   - `--language <lang>` — Generate all textual content (summaries, descriptions, tags, titles, languageNotes, languageLesson) in the specified language. Accepts ISO 639-1 codes (`zh`, `ja`, `ko`, `en`, `es`, `fr`, `de`, etc.) or friendly names (`chinese`, `japanese`, `korean`, `english`, `spanish`, etc.). Locale variants supported: `zh-TW`, `zh-HK`, etc. Defaults to `en` (English). Stores preference in `.understand-anything/config.json` for consistency across incremental updates.
   - A directory path (e.g. `/path/to/repo` or `../other-project`) — Analyze the given directory instead of the current working directory
 
@@ -832,8 +833,83 @@ Report to the user: `[Phase 7/7] Saving knowledge graph...`
    - Any warnings from the reviewer
    - Path to the output file: `$PROJECT_ROOT/.understand-anything/knowledge-graph.json`
 
-6. Only automatically launch the dashboard by invoking the `/understand-dashboard` skill if final graph validation passed after normalization/review fixes.
+6. **If `--deploy` is in `$ARGUMENTS`:** Proceed to **Phase 8 — DEPLOY** below. Skip the local dev server launch.
+
+7. Otherwise, only automatically launch the dashboard by invoking the `/understand-dashboard` skill if final graph validation passed after normalization/review fixes.
    If final validation did not pass, report that the graph was saved with warnings and dashboard launch was skipped.
+
+---
+
+## Phase 8 — DEPLOY
+
+Report to the user: `[Phase 8/8] Building and deploying static dashboard...`
+
+This phase runs only when `--deploy` is in `$ARGUMENTS`. It builds a self-contained static dashboard with source code bundled, creates a GitHub repo, and pushes — ready for CF Pages.
+
+1. **Build source cache:**
+   ```bash
+   cd "$PLUGIN_ROOT/packages/dashboard" && \
+   SOURCE_DIR="$PROJECT_ROOT" node scripts/build-source-cache.mjs
+   ```
+
+   Then copy the knowledge graph into the dashboard's public dir:
+   ```bash
+   cp "$PROJECT_ROOT/.understand-anything/knowledge-graph.json" "$PLUGIN_ROOT/packages/dashboard/public/knowledge-graph.json"
+   ```
+
+2. **Build the static dashboard:**
+   ```bash
+   cd "$PLUGIN_ROOT/packages/dashboard" && \
+   VITE_DEMO_MODE=true npx vite build
+   ```
+
+   If the build fails, report the error and STOP.
+
+3. **Create the graph repo.** Derive the repo name from the project name (from Phase 1): `<projectName>-graph`. Use `gh repo create`:
+   ```bash
+   GRAPH_REPO="<projectName>-graph"
+   gh repo create "stansz/$GRAPH_REPO" --public --description "Knowledge graph dashboard for <projectName>" --push 2>&1 || true
+   ```
+
+   If the repo already exists, `gh repo create` will fail — that's fine, proceed to clone.
+   If it fails for another reason (auth, rate limit), report the error and offer the manual fallback: "Repo creation failed. Create `stansz/$GRAPH_REPO` manually on GitHub, then re-run with `--deploy`."
+
+4. **Clone and populate the graph repo:**
+   ```bash
+   GRAPH_DIR="/tmp/$GRAPH_REPO-deploy"
+   rm -rf "$GRAPH_DIR"
+   git clone "https://$(gh auth token)@github.com/stansz/$GRAPH_REPO.git" "$GRAPH_DIR" 2>&1
+   cd "$GRAPH_DIR"
+   rm -rf assets index.html favicon.* knowledge-graph.json source-cache.json README.md 2>/dev/null || true
+   cp -r "$PLUGIN_ROOT/packages/dashboard/dist/"* .
+   ```
+
+5. **Write a minimal README:**
+   ```bash
+   echo "# <projectName> — Knowledge Graph Dashboard" > README.md
+   echo "" >> README.md
+   echo "Interactive architecture dashboard for [<projectName>](https://github.com/stansz/<projectName>)." >> README.md
+   echo "" >> README.md
+   echo "Built with [Understand Anything](https://github.com/stansz/Understand-Anything)." >> README.md
+   ```
+
+6. **Commit and push:**
+   ```bash
+   cd "$GRAPH_DIR"
+   git add -A
+   git commit -m "deploy: knowledge graph dashboard for <projectName>" --allow-empty
+   git push
+   ```
+
+7. **Report to the user:**
+   > Dashboard deployed! 🚀
+   >
+   > - **Repo:** https://github.com/stansz/$GRAPH_REPO
+   > - **Live:** https://$GRAPH_REPO.pages.dev/ (after CF Pages connects — set source to `main` branch, root directory)
+   >
+   > Source code viewer is bundled — click any file node to see the actual code.
+   >
+   > To update after code changes: re-run `/understand $PROJECT_ROOT --deploy`
 
 ---
 
