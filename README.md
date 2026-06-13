@@ -1,7 +1,7 @@
 <h1 align="center">Understand Anything</h1>
 
 > [!NOTE]
-> **This is the Hermes Agent fork — the actual skill engine behind `/understand` in Hermes.** Upstream: [Lum1104/Understand-Anything](https://github.com/Lum1104/Understand-Anything). Changes here include subdomain graph merging for multi-repo projects, Hermes-specific agent configurations, and bugfixes.
+> **This is a custom Hermes skill fork — not the official upstream.** Upstream: [Lum1104/Understand-Anything](https://github.com/Lum1104/Understand-Anything). This fork powers the `/understand` skill in our Hermes Agent with custom changes: subdomain graph merging for multi-repo projects, Hermes-specific agent configurations, and bugfixes.
 
 <p align="center">
   <strong>Turn any codebase, knowledge base, or docs into an interactive knowledge graph you can explore, search, and ask questions about.</strong>
