@@ -271,6 +271,28 @@ git add .gitattributes .understand-anything/
 
 ---
 
+## 🔗 Multi-Repo Projects
+
+Have separate repos for frontend, backend, and infrastructure? `/understand` can merge them into a single unified graph.
+
+### How it works
+
+1. Run `/understand` on each repo to generate individual knowledge graphs
+2. Copy the secondary graphs into the primary repo's `.understand-anything/` directory with descriptive names:
+   ```bash
+   cp frontend/.understand-anything/knowledge-graph.json \
+      backend/.understand-anything/frontend-knowledge-graph.json
+   cp infra/.understand-anything/knowledge-graph.json \
+      backend/.understand-anything/infra-knowledge-graph.json
+   ```
+3. Re-run `/understand --deploy` on the primary repo — Phase 0 auto-discovers any `*-knowledge-graph.json` files and merges them before analysis
+
+The merge script deduplicates nodes by ID, edges by `(source, target, type)`, merges architectural layers, and combines guided tours. Cross-repo edges (e.g. `frontend/api-client.ts → backend/server.ts`) are preserved.
+
+**Example:** [ukraine-war-tracker-graph](https://github.com/stansz/ukraine-war-tracker-graph) combines a Python data pipeline repo with a Rust/Axum dashboard repo into one interactive graph. [Live demo →](https://ukraine-war-tracker-graph.pages.dev)
+
+---
+
 ## 🔧 Under the Hood
 
 ### Tree-sitter + LLM hybrid
