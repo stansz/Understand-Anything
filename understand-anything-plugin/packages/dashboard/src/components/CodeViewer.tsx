@@ -23,6 +23,24 @@ type SourceState =
   | { status: "loaded"; source: SourceFile; error: null }
   | { status: "error"; source: null; error: string };
 
+/** Source cache loaded once in demo mode — maps filePath → SourceFile. */
+let demoSourceCache: Record<string, SourceFile> | null = null;
+let demoSourceCacheLoading: Promise<void> | null = null;
+
+function loadDemoSourceCache(): Promise<void> {
+  if (demoSourceCache !== null) return Promise.resolve();
+  if (demoSourceCacheLoading) return demoSourceCacheLoading;
+  demoSourceCacheLoading = fetch("/source-cache.json")
+    .then((res) => (res.ok ? res.json() : {}))
+    .then((data) => {
+      demoSourceCache = data as Record<string, SourceFile>;
+    })
+    .catch(() => {
+      demoSourceCache = {};
+    });
+  return demoSourceCacheLoading;
+}
+
 function fileContentUrl(filePath: string, token: string): string {
   const params = new URLSearchParams({ token, path: filePath });
   return `/file-content.json?${params.toString()}`;
@@ -88,10 +106,20 @@ export default function CodeViewer({
     }
 
     if (accessToken === "__demo__") {
-      setState({
-        status: "error",
-        source: null,
-        error: "Source preview is available only when the local dashboard server is running.",
+      setState({ status: "loading", source: null, error: null });
+      loadDemoSourceCache().then(() => {
+        const cached = demoSourceCache?.[node.filePath ?? ""];
+        if (cached) {
+          setState({ status: "loaded", source: cached, error: null });
+        } else {
+          setState({
+            status: "error",
+            source: null,
+            error: demoSourceCache === null
+              ? "Loading source cache..."
+              : "Source preview is available only when the local dashboard server is running.",
+          });
+        }
       });
       return;
     }
